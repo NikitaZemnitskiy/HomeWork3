@@ -1,26 +1,27 @@
-import com.sun.xml.internal.ws.api.model.wsdl.WSDLOutput;
-
-import java.util.HashSet;
-import java.util.Set;
-
+/**
+ * @author Zemnytskyi Mykyta
+ */
 public class LongestSubstringWithoutRepeatingCharacters {
-    public static void main(String[] args) {
-        String s = "Коллективизация";
-       System.out.println(lengthOfLongestSubstring(s));
-    }
 
 
+    /**
+     * Finds length of the first longest substring of unique characters of parameter s
+     * @param s input string
+     * @return length of the first longest substring of unique characters of parameter s
+     */
     public static int lengthOfLongestSubstring(String s) {
-        for (int i = 1; i<s.length();i++){
-            String currentString = s.substring(0,i);
-            if (currentString.indexOf(s.charAt(i)) != -1){
-                String prefix = s.substring(0,s.indexOf(s.charAt(i))+1);
-                String sufix = s.substring(s.indexOf(s.charAt(i))+1);
-                int sufixLength = lengthOfLongestSubstring(sufix);
-                int MaxLength = sufixLength>prefix.length()?sufixLength:prefix.length();
-                return MaxLength>currentString.length()?MaxLength:currentString.length();
+        final int length = s.length();
+        for (int i = 1; i < length; i++) {
+            String prefix = s.substring(0, i);
+            char currentChar = s.charAt(i);
+            int sameCharPosition = prefix.indexOf(currentChar);
+            if (sameCharPosition != -1) {
+                String suffix = s.substring(sameCharPosition + 1);
+                int suffixLength = lengthOfLongestSubstring(suffix);
+                int maxLength = suffixLength >= i ? suffixLength : i;
+                return maxLength;
             }
         }
-        return s.length();
+        return length;
     }
 }

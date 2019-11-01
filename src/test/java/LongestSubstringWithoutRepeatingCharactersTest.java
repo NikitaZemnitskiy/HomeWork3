@@ -34,6 +34,13 @@ class LongestSubstringWithoutRepeatingCharactersTest {
         int actual = LongestSubstringWithoutRepeatingCharacters.lengthOfLongestSubstring("dadaOndawdottdatpoluchaaaaaa");
         assertEquals(expected, actual);
     }
+
+    @Test
+    void lengthOfLongestSubstringTest5() {
+        int expected = 6;
+        int actual = LongestSubstringWithoutRepeatingCharacters.lengthOfLongestSubstring("Hello_World");
+        assertEquals(expected, actual);
+    }
     @Test
     void lengthOfLongestSubstringTestWithEmptyInput() {
         int expected = 0;
